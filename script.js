@@ -64,6 +64,7 @@ const labelTimer = document.querySelector(".timer");
 const containerApp = document.querySelector(".app");
 const containerMovements = document.querySelector(".movements");
 
+const btn_log_out = document.querySelector(".logout__btn");
 const btnLogin = document.querySelector(".login__btn");
 const btnTransfer = document.querySelector(".form__btn--transfer");
 const btnLoan = document.querySelector(".form__btn--loan");
@@ -80,6 +81,14 @@ const inputClosePin = document.querySelector(".form__input--pin");
 
 /////////////////////////////////////////////////
 // Functions
+
+// btn_log_out.classList.add("hidden");
+
+btn_log_out.addEventListener("click", function () {
+  labelWelcome.textContent = `Log in to get started`;
+  containerApp.style.opacity = 0;
+  btn_log_out.style.opacity = 0;
+});
 
 //===============================
 // 176 + 177 Dates
@@ -233,6 +242,9 @@ let curr_acc, timer_interval;
 btnLogin.addEventListener("click", function (event) {
   //prevent form to submiting
   event.preventDefault();
+
+  btn_log_out.classList.remove("hidden");
+  // btn_log_out.classList.remove("hidden");
 
   curr_acc = accounts.find((acc) => acc.user_name === inputLoginUsername.value);
   if (curr_acc?.pin === +inputLoginPin.value) {
